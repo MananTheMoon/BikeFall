@@ -1,9 +1,149 @@
 <html>
     <head>
-        <title> 17 Across: Clue Here (TODO)</title>
+        <title> 30 Across: Sk8er ___ </title>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Federant" />
+        <style>
+            body {
+                background-color: black;
+            }
+
+            .background {
+                width: 900px;
+                height: 652px;
+                text-align: center;
+                background-image: url('ScavengerMapDraft2.png');
+                background-size: 900px 652px;
+                margin: auto;
+                position: relative;
+            }
+
+            .passwordEntry {
+                color: white;
+                text-align: center;
+                font-size: 20px;
+                margin-top: 10px;
+            }
+
+            .cover {
+                background-color: black;
+                width: 25%;
+                height: 25%;
+                position: absolute;
+                z-index: 20;
+                opacity: 1;
+            }
+
+            .tomb {
+                z-index: 10;
+                width: 160px;
+                position: absolute;
+                font-family: Federant;
+                font-size: 26px;
+                color: white;
+                text-shadow: 2px 2px #880000;
+                cursor: pointer;
+            }
+
+            .cover2, .cover6, .cover10, .cover14 {
+                left: 25%;
+            }
+            .cover3, .cover7, .cover11, .cover15 {
+                left: 50%;
+            }
+            .cover4, .cover8, .cover12, .cover16 {
+                left: 75%;
+            }
+
+            .cover5, .cover6, .cover7, .cover8 {
+                top: 25%;
+            }
+            .cover9, .cover10, .cover11, .cover12 {
+                top: 50%;
+            }
+            .cover13, .cover14, .cover15, .cover16 {
+                top: 75%;
+            }
+
+            .tomb1{ top: 7px; left: 50px; }
+        </style>
 
     </head>
     <body>
-        <p> TESTING</p>
+        <div class="background">
+            <div class="cover cover1">
+            </div>
+            <div class="cover cover2">
+            </div>
+            <div class="cover cover3">
+            </div>
+            <div class="cover cover4">
+            </div>
+
+            <div class="cover cover5">
+            </div>
+            <div class="cover cover6">
+            </div>
+            <div class="cover cover7">
+            </div>
+            <div class="cover cover8">
+            </div>
+
+            <div class="cover cover9">
+            </div>
+            <div class="cover cover10">
+            </div>
+            <div class="cover cover11">
+            </div>
+            <div class="cover cover12">
+            </div>
+
+            <div class="cover cover13">
+            </div>
+            <div class="cover cover14">
+            </div>
+            <div class="cover cover15">
+            </div>
+            <div class="cover cover16">
+            </div>
+
+            <div class="tomb tomb1">Temple of Tranquility</div>
+        </div>
+        <div class="passwordEntry">
+            <form id="passwordForm">
+                <span> Password: </span>
+                <input class="passwordInput" type="text">
+                <input class="passwordSubmit" type="submit">
+            </form>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            var coverMappings = {
+                'setTODO': '.cover1',
+                '381654729': '.cover2',
+                'cover3': '.cover3',
+                'cover4': '.cover4',
+                'cover5': '.cover5',
+                'cover6': '.cover6',
+                'cover7': '.cover7',
+                'cover8': '.cover8',
+                'cover9': '.cover9',
+                'cover10': '.cover10',
+                'cover11': '.cover11',
+                'cover12': '.cover12',
+                'cover13': '.cover13',
+                'cover14': '.cover14',
+                'cover15': '.cover15',
+                'cover16': '.cover16',
+            };
+            $('#passwordForm').submit(function(event) {
+                event.preventDefault();
+                var password = $('.passwordInput').val();
+                var coverDiv = $(coverMappings[password]);
+                if (coverDiv) {
+                    coverDiv.hide(2000);
+                }
+            }.bind(this));
+        </script>
     </body>
 </html>
