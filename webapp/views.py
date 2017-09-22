@@ -6,6 +6,6 @@ def index(request):
     return render(request, 'index.html', context)
 
 def map(request):
-    image_data = open('templates/ScavengerMapDraft3.png', 'rb').read()
+    image_data = open('/templates/ScavengerMapDraft3.png', 'rb').read()
     return HttpResponse(image_data, content_type="image/png")
 
