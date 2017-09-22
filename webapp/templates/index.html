@@ -11,7 +11,7 @@
                 width: 900px;
                 height: 652px;
                 text-align: center;
-                background-image: url('ScavengerMapDraft2.png');
+                background-image: url('ScavengerMapDraft3.png');
                 background-size: 900px 652px;
                 margin: auto;
                 position: relative;
@@ -25,6 +25,7 @@
             }
 
             .cover {
+                display: none;
                 background-color: black;
                 width: 25%;
                 height: 25%;
@@ -64,7 +65,18 @@
                 top: 75%;
             }
 
-            .tomb1{ top: 7px; left: 50px; }
+            .tomb1{ top:   7px; left:  50px; }
+            .tomb2{ top:  90px; left: 370px; }
+            .tomb3{ top: 245px; left: 134px; width: 170px;}
+            .tomb4{ top: 201px; left: 461px; }
+            .tomb5{ top: 130px; left: 720px; }
+            .tomb6{ top: 436px; left:  42px;  }
+            .tomb7{ top: 414px; left: 700px; }
+            .tomb8{ top: 581px; left: 563px; width: 190px; }
+            .tomb9{ top: 468px; left: 365px; }
+
+
+
         </style>
 
     </head>
@@ -106,7 +118,15 @@
             <div class="cover cover16">
             </div>
 
-            <div class="tomb tomb1">Temple of Tranquility</div>
+            <div class="tomb tomb1" data-tomb="1">Temple of Tranquility</div>
+            <div class="tomb tomb2" data-tomb="2">Colosseum of Lexicology</div>
+            <div class="tomb tomb3" data-tomb="3">The Unwieldy Wagon</div>
+            <div class="tomb tomb4" data-tomb="4">Cartographer's Tunnel</div>
+            <div class="tomb tomb5" data-tomb="5">Isle of the Nemesis</div>
+            <div class="tomb tomb6" data-tomb="6">Chamber of Mutual Excursion</div>
+            <div class="tomb tomb7" data-tomb="7">Mausoleum of Memories</div>
+            <div class="tomb tomb8" data-tomb="8">The Frigid Sea</div>
+            <div class="tomb tomb9" data-tomb="9">Trembling Towers</div>
         </div>
         <div class="passwordEntry">
             <form id="passwordForm">
@@ -120,30 +140,36 @@
         <script>
             var coverMappings = {
                 'setTODO': '.cover1',
-                '381654729': '.cover2',
-                'cover3': '.cover3',
-                'cover4': '.cover4',
+                '2178': '.cover2',
+                '666': '.cover3',
+                '1670': '.cover4',
                 'cover5': '.cover5',
                 'cover6': '.cover6',
-                'cover7': '.cover7',
-                'cover8': '.cover8',
-                'cover9': '.cover9',
-                'cover10': '.cover10',
+                'RATEARDONACE': '.cover7',
+                '31': '.cover8',
+                '88': '.cover9',
+                'ABIGAIL': '.cover10',
                 'cover11': '.cover11',
-                'cover12': '.cover12',
-                'cover13': '.cover13',
+                '6210001000': '.cover12',
+                'BIRTHDAYS': '.cover13',
                 'cover14': '.cover14',
-                'cover15': '.cover15',
-                'cover16': '.cover16',
+                '59': '.cover15',
+                '381654729': '.cover16',
             };
+
             $('#passwordForm').submit(function(event) {
                 event.preventDefault();
-                var password = $('.passwordInput').val();
+                var password = $('.passwordInput').val().toUpperCase();
                 var coverDiv = $(coverMappings[password]);
                 if (coverDiv) {
                     coverDiv.hide(2000);
                 }
             }.bind(this));
+
+            $('.tomb').on('click', function(event){
+                var tombDiv = $(event.target);
+                var tombNumber = tombDiv.attr('data-tomb');
+            });
         </script>
     </body>
 </html>
