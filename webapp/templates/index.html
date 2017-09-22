@@ -11,7 +11,8 @@
                 width: 900px;
                 height: 652px;
                 text-align: center;
-                background-image: url('../../bikefall/staticfiles/ScavengerMapDraft3.png');
+                /*background-image: url('../../bikefall/staticfiles/ScavengerMapDraft3.png');*/
+                background-image: url('http://bikefall.herokuapp.com/static/ScavengerMapDraft3.png');
                 background-size: 900px 652px;
                 margin: auto;
                 position: relative;
@@ -25,7 +26,6 @@
             }
 
             .cover {
-                display: none;
                 background-color: black;
                 width: 25%;
                 height: 25%;
@@ -82,41 +82,25 @@
     </head>
     <body>
         <div class="background">
-            <div class="cover cover1">
-            </div>
-            <div class="cover cover2">
-            </div>
-            <div class="cover cover3">
-            </div>
-            <div class="cover cover4">
-            </div>
+            <div class="cover cover1" data-cover="1"></div>
+            <div class="cover cover2" data-cover="2"></div>
+            <div class="cover cover3" data-cover="3"></div>
+            <div class="cover cover4" data-cover="4"></div>
 
-            <div class="cover cover5">
-            </div>
-            <div class="cover cover6">
-            </div>
-            <div class="cover cover7">
-            </div>
-            <div class="cover cover8">
-            </div>
+            <div class="cover cover5" data-cover="5"></div>
+            <div class="cover cover6" data-cover="6"></div>
+            <div class="cover cover7" data-cover="7"></div>
+            <div class="cover cover8" data-cover="8"></div>
 
-            <div class="cover cover9">
-            </div>
-            <div class="cover cover10">
-            </div>
-            <div class="cover cover11">
-            </div>
-            <div class="cover cover12">
-            </div>
+            <div class="cover cover9" data-cover="9"></div>
+            <div class="cover cover10" data-cover="10"></div>
+            <div class="cover cover11" data-cover="11"></div>
+            <div class="cover cover12" data-cover="12"></div>
 
-            <div class="cover cover13">
-            </div>
-            <div class="cover cover14">
-            </div>
-            <div class="cover cover15">
-            </div>
-            <div class="cover cover16">
-            </div>
+            <div class="cover cover13" data-cover="13"></div>
+            <div class="cover cover14" data-cover="14"></div>
+            <div class="cover cover15" data-cover="15"></div>
+            <div class="cover cover16" data-cover="16"></div>
 
             <div class="tomb tomb1" data-tomb="1">Temple of Tranquility</div>
             <div class="tomb tomb2" data-tomb="2">Colosseum of Lexicology</div>
@@ -139,17 +123,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>
             var coverMappings = {
-                'setTODO': '.cover1',
+                'GREATJOB': '.cover1',
                 '2178': '.cover2',
                 '666': '.cover3',
                 '1670': '.cover4',
                 'cover5': '.cover5',
-                'cover6': '.cover6',
+                '31': '.cover6',
                 'RATEARDONACE': '.cover7',
                 '31': '.cover8',
                 '88': '.cover9',
                 'ABIGAIL': '.cover10',
-                'cover11': '.cover11',
+                'BRAVE': '.cover11',
                 '6210001000': '.cover12',
                 'BIRTHDAYS': '.cover13',
                 'cover14': '.cover14',
@@ -157,18 +141,49 @@
                 '381654729': '.cover16',
             };
 
+            var tombCoverMappings = {
+                '1': ['1'],
+                '2': ['2', '3'],
+                '3': ['5', '6'],
+                '4': ['7'],
+                '5': ['4', '8'],
+                '6': ['9', '13'],
+                '7': ['12'],
+                '8': ['15', '16'],
+                '9': ['10', '11', '14', '15']
+            };
+
+            var uncoveredSections = [];
+
             $('#passwordForm').submit(function(event) {
                 event.preventDefault();
                 var password = $('.passwordInput').val().toUpperCase();
                 var coverDiv = $(coverMappings[password]);
                 if (coverDiv) {
                     coverDiv.hide(2000);
+                    uncoveredSections.push(coverDiv.attr('data-cover'));
                 }
             }.bind(this));
 
             $('.tomb').on('click', function(event){
                 var tombDiv = $(event.target);
                 var tombNumber = tombDiv.attr('data-tomb');
+                var tombCovers = tombCoverMappings[tombNumber];
+                var isTombCovered = false;
+                tombCovers.forEach(function(i) {
+                    if ($.inArray(i,uncoveredSections) < 0) {
+                        isTombCovered = true;
+                    }
+                }.bind(this));
+
+                console.log(isTombCovered);
+
+                if (!isTombCovered) {
+                    // show modal
+                }
+
+
+
             });
         </script>
     </body>
