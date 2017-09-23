@@ -47,6 +47,11 @@
                 cursor: pointer;
             }
 
+            .tomb.tombClosed {
+                color: grey;
+                text-shadow: 2px 2px #774444;
+            }
+
             .cover2, .cover6, .cover10, .cover14 {
                 left: 25%;
             }
@@ -188,7 +193,7 @@
                 '9': 'A final gauntlet for the steady and prepared. <br> Send 13 adventurers.',
             };
 
-            var coverMappings = {
+            /*var coverMappings = {
                 '1': '.cover1',
                 '2': '.cover2',
                 '3': '.cover3',
@@ -205,14 +210,14 @@
                 '14': '.cover14',
                 '15': '.cover15',
                 '16': '.cover16',
-            };
+            };*/
 
-            /*var coverMappings = {
+            var coverMappings = {
                 'GREATJOB': '.cover1',
                 '2178': '.cover2',
                 '666': '.cover3',
                 '1670': '.cover4',
-                'cover5': '.cover5',
+                'ALMOST': '.cover5',
                 '17': '.cover6',
                 'RATEARDONACE': '.cover7',
                 '31': '.cover8',
@@ -224,7 +229,7 @@
                 'cover14': '.cover14',
                 '59': '.cover15',
                 '381654729': '.cover16',
-            };*/
+            };
             var uncoveredSections = [];
 
             $('#passwordForm').submit(function(event) {
@@ -258,8 +263,24 @@
             });
 
             $('.overlay').on('click', function(event){
-                $('.overlay').hide();
+                if ($(event.target).closest('.modal').length == 0) {
+                    $('.overlay').hide();
+                }
             })
+
+            $('.tomb').mousedown(function(e) {
+                var el = $(event.target).closest('.tomb');
+                console.log(el);
+                clearTimeout(this.downTimer);
+                this.downTimer = setTimeout(function() {
+                    console.log('PRESSED!');
+                    el.toggleClass('tombClosed')
+                }.bind(this), 4000);
+            }).mouseup(function(e) {
+                clearTimeout(this.downTimer);
+            });
+
+
         </script>
     </body>
 </html>
