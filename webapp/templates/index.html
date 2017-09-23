@@ -5,9 +5,11 @@
         <style>
             body {
                 background-color: black;
+                margin: 0;
             }
 
             .background {
+                border: solid 1px #111111;
                 width: 900px;
                 height: 652px;
                 text-align: center;
@@ -70,17 +72,54 @@
             .tomb3{ top: 245px; left: 134px; width: 170px;}
             .tomb4{ top: 201px; left: 461px; }
             .tomb5{ top: 130px; left: 720px; }
-            .tomb6{ top: 436px; left:  42px;  }
+            .tomb6{ top: 436px; left:  42px; }
             .tomb7{ top: 414px; left: 700px; }
             .tomb8{ top: 581px; left: 563px; width: 190px; }
             .tomb9{ top: 468px; left: 365px; }
 
+            .overlay {
+                display:none;
+                position: absolute;
+                z-index: 30;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
 
+            .modal {
+                width: 400px;
+                height: 350px;
+                padding: 8px;
+                background-color: #222222;
+                border: solid 15px #777777;
+                border-radius: 15px;
+                margin: 75px auto auto auto;
+            }
+
+            .tombImg {
+                width: 300px;
+                height: 300px;
+                margin-bottom: 15px;
+            }
+
+            .tombSlogan {
+                font-family: Federant;
+                color: white;
+            }
 
         </style>
 
     </head>
     <body>
+
+        <div class="overlay">
+            <div class="modal">
+                <img class="tombImg" src="../../bikefall/staticfiles/tombs/tomb2.png" />
+                <div class="tombSlogan">Testing Tomb Slogan here perhaps long</div>
+            </div>
+
+        </div>
+
         <div class="background">
             <div class="cover cover1" data-cover="1"></div>
             <div class="cover cover2" data-cover="2"></div>
@@ -122,25 +161,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>
-            var coverMappings = {
-                'GREATJOB': '.cover1',
-                '2178': '.cover2',
-                '666': '.cover3',
-                '1670': '.cover4',
-                'cover5': '.cover5',
-                '31': '.cover6',
-                'RATEARDONACE': '.cover7',
-                '31': '.cover8',
-                '88': '.cover9',
-                'ABIGAIL': '.cover10',
-                'BRAVE': '.cover11',
-                '6210001000': '.cover12',
-                'BIRTHDAYS': '.cover13',
-                'cover14': '.cover14',
-                '59': '.cover15',
-                '381654729': '.cover16',
-            };
-
             var tombCoverMappings = {
                 '1': ['1'],
                 '2': ['2', '3'],
@@ -153,6 +173,55 @@
                 '9': ['10', '11', '14', '15']
             };
 
+            var tombMessages = {
+                '1': 'TODO Temple of Tranquility',
+                '2': 'TODO',
+                '3': 'TODO',
+                '4': 'TODO',
+                '5': 'TODO',
+                '6': 'TODO',
+                '7': 'TODO',
+                '8': 'TODO',
+                '9': 'TODO',
+            };
+
+            var coverMappings = {
+                '1': '.cover1',
+                '2': '.cover2',
+                '3': '.cover3',
+                '4': '.cover4',
+                '5': '.cover5',
+                '6': '.cover6',
+                '7': '.cover7',
+                '8': '.cover8',
+                '9': '.cover9',
+                '10': '.cover10',
+                '11': '.cover11',
+                '12': '.cover12',
+                '13': '.cover13',
+                '14': '.cover14',
+                '15': '.cover15',
+                '16': '.cover16',
+            };
+
+            /*var coverMappings = {
+                'GREATJOB': '.cover1',
+                '2178': '.cover2',
+                '666': '.cover3',
+                '1670': '.cover4',
+                'cover5': '.cover5',
+                '17': '.cover6',
+                'RATEARDONACE': '.cover7',
+                '31': '.cover8',
+                '88': '.cover9',
+                'ABIGAIL': '.cover10',
+                'BRAVE': '.cover11',
+                '6210001000': '.cover12',
+                'BIRTHDAYS': '.cover13',
+                'cover14': '.cover14',
+                '59': '.cover15',
+                '381654729': '.cover16',
+            };*/
             var uncoveredSections = [];
 
             $('#passwordForm').submit(function(event) {
@@ -179,12 +248,15 @@
                 console.log(isTombCovered);
 
                 if (!isTombCovered) {
-                    // show modal
+                    $('.overlay').show();
+                    $('.tombImg').attr('src', 'http://bikefall.herokuapp.com/static/tomb/tomb'+ tombNumber + '.png');
+                    $('.tombSlogan').text(tombMessages[tombNumber]);
                 }
-
-
-
             });
+
+            $('.overlay').on('click', function(event){
+                $('.overlay').hide();
+            })
         </script>
     </body>
 </html>
