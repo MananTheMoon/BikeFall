@@ -88,7 +88,7 @@
 
             .modal {
                 width: 400px;
-                height: 350px;
+                height: 400px;
                 padding: 8px;
                 background-color: #222222;
                 border: solid 15px #777777;
@@ -114,8 +114,10 @@
 
         <div class="overlay">
             <div class="modal">
-                <img class="tombImg" src="../../bikefall/staticfiles/tombs/tomb2.png" />
-                <div class="tombSlogan">Testing Tomb Slogan here perhaps long</div>
+                <div class="modalContainer">
+                    <img class="tombImg" src="../../bikefall/staticfiles/tombs/tomb2.png" />
+                    <div class="tombSlogan">Tomb Slogan Here.</div>
+                </div>
             </div>
 
         </div>
@@ -174,15 +176,16 @@
             };
 
             var tombMessages = {
-                '1': 'TODO Temple of Tranquility',
-                '2': 'TODO',
-                '3': 'TODO',
-                '4': 'TODO',
-                '5': 'TODO',
-                '6': 'TODO',
-                '7': 'TODO',
-                '8': 'TODO',
-                '9': 'TODO',
+                '1': 'Overcome the trembling to achieve inner peace. <br> Send 2 adventurers.',
+                '2': 'The duplicity of words is key. <br> Send 4 adventurers.',
+                '3': 'To be doubly Dashing is not as flattering as one might think. <br> Send 4 adventurers',
+                '4': 'Locals with knowledge of the region shall navigate the roads with ease. <br> Send 3 adventurers.',
+                '5': 'The rockets red glare, torpedos bursting in air <br> gave proof through the night that our ship was still there' +
+                     '<br> Send 3 adventurers.',
+                '6': 'A trial never before completed by a human. This is where you two come in. <br> Send 2 adventurers.',
+                '7': 'A memory of the fleeting to remain alive. <br> Send 4 adventurers.',
+                '8': 'Seeking a friend under the frosty ocean. <br> Send 4 adventurers.',
+                '9': 'A final gauntlet for the steady and prepared. <br> Send 13 adventurers.',
             };
 
             var coverMappings = {
@@ -249,8 +252,8 @@
 
                 if (!isTombCovered) {
                     $('.overlay').show();
-                    $('.tombImg').attr('src', 'http://bikefall.herokuapp.com/static/tomb/tomb'+ tombNumber + '.png');
-                    $('.tombSlogan').text(tombMessages[tombNumber]);
+                    $('.tombImg').attr('src', 'http://bikefall.herokuapp.com/static/tombs/tomb'+ tombNumber + '.png');
+                    $('.tombSlogan').html(tombMessages[tombNumber]);
                 }
             });
 
